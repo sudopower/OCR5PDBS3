@@ -6,12 +6,12 @@ for block letters.
 >MSER feature detection is being employed using `MATLAB`
 
 ## Input Image
-![](testfig.png)
+![](images/testfig.png)
 
 ## Output Image
-![](output.png)
+![](images/output.png)
 
 >A `neural networks` based implementation is being explored alongside as alternative
 model in `SCILAB`
 
-![](nn.png)
+![](images/nn.png)
