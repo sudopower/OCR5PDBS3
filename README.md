@@ -9,7 +9,7 @@
 ![](images/output.png)
 
 ## Output array of images
-![](images/letters.png)
+![](images/letters.PNG)
 
 >A `neural networks` based implementation is being explored alongside as alternative
 model in `SCILAB`
