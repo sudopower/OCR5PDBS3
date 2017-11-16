@@ -31,3 +31,12 @@ end
 hold off
 pause (1)
 %% Objects extraction
+figure
+for n=1:Ne
+    [r,c] = find(L==n);
+    n1=imagen(min(r):max(r),min(c):max(c));
+    isolate{n}=n1;
+    
+    imshow(~n1);
+    pause(0.5)
+end
