@@ -22,6 +22,9 @@ import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -38,6 +41,7 @@ import java.io.OutputStream;
 public class Recognizer extends AppCompatActivity implements  Toolbar.OnMenuItemClickListener {
     private Toolbar toolbar;
     private EditText search;
+    private EditText editdata;
     private TextView textView;
     private String textScanned;
     ProgressDialog progressCopy, progressOcr;
@@ -59,6 +63,7 @@ public class Recognizer extends AppCompatActivity implements  Toolbar.OnMenuItem
         textView = (TextView) findViewById(R.id.textExtracted);
         textView.setMovementMethod(new ScrollingMovementMethod());
         search = (EditText) findViewById(R.id.search_text);
+        editdata = (EditText)findViewById(R.id.textExtracted);
         // Setting progress dialog for copy job.
         progressCopy = new ProgressDialog(Recognizer.this);
         progressCopy.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -122,6 +127,8 @@ public class Recognizer extends AppCompatActivity implements  Toolbar.OnMenuItem
         baseApi.setImage(Binarization.umbralization);
         textScanned = baseApi.getUTF8Text();
 
+
+
     }
 
 
@@ -164,6 +171,45 @@ public class Recognizer extends AppCompatActivity implements  Toolbar.OnMenuItem
         }
     }
 
+    public void save(View view) {
+        File file= null;
+        String mydata = editdata.getText().toString();
+
+        String name = mydata;
+
+
+        FileOutputStream fileOutputStream = null;
+        try {
+            name = name + " ";
+            file = getFilesDir();
+
+            fileOutputStream = openFileOutput("Code.txt", Context.MODE_APPEND);
+            fileOutputStream.write(name.getBytes());
+            Toast.makeText(this, "Saved \n" + "Path --" + file + "\tCode.txt", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+            return;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void next(View view) {
+        Toast.makeText(this,"NEXT", Toast.LENGTH_SHORT).show();
+        Intent intent= new Intent(Recognizer.this, MainActivity2.class);
+
+        startActivity(intent);
+    }
+
     private class copyTask extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -199,9 +245,12 @@ public class Recognizer extends AppCompatActivity implements  Toolbar.OnMenuItem
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             progressOcr.cancel();
-            textView.setText(textScanned);
+            editdata.setText(textScanned, TextView.BufferType.EDITABLE);
 
         }
+
+
+
 
         @Override
         protected Void doInBackground(Void... params) {
