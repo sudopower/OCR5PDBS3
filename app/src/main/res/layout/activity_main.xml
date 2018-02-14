@@ -33,7 +33,7 @@
         <ImageView
             android:layout_width="175dp"
             android:layout_height="247dp"
-            android:src="@drawable/camera"
-            android:contentDescription="@string/camera" />
+            android:contentDescription="@string/camera"
+            android:src="@drawable/back" />
     </LinearLayout>
 </RelativeLayout>
