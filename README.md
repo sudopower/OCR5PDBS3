@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/sudopower/OCR5PDBS3.svg?branch=master)](https://travis-ci.org/sudopower/OCR5PDBS3)
+issue with gradle version download and let android studio install correct gradle version
+
 # Text Scanner (OCR) [![GitHub release](https://img.shields.io/github/release/testica/text-scanner.svg)]()
 OCR Android App using tesseract
 
